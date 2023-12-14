@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+#include <ctype.h>
+
+void cabecalho()
+{
+    printf("\n\t**É O JOVEM JOSH E A JOVEM WILLIE\n");
+}
+void cabecalhoLoja()
+{
+    printf("\n\t**LOJA JUVENTUDE\n");
+}
+void limpacache()
+{
+    fflush(stdin);
+}
+void limpatela()
+{
+    system("cls || clear");
+}
+void menuEstoque()
+{
+    printf("\nCarrinho - R$ 25, 00\n");
+    printf("\nApito - R$ 10,00\n");
+    printf("\nSkate - R$ 35, 00\n");
+    printf("\nBoneca - R$ 35,00\n");
+    printf("\nBola - R$ 25,00\n");
+}
+void menuCliente()
+{
+    puts("");
+    printf("\n1-Ver Produtos");
+    printf("\n2-Realizar compra");
+    printf("\n3- consultar nome de funcionario que realizou a venda");
+    printf("\n4- realizar uma pesquisa de satisfação (1 a 10)");
+    printf("\n5-Sair");
+}
+
+int main()
+{
+    setlocale(LC_ALL, "portuguese");
+    char nomeProduto[500];
+    int opcao = 0;
+    float preco = 0;
+    float totalVendas = 0;
+    int quantidade = 0;
+    int satisfacao = 0;
+    char nomeFuncionario[500];
+    int contSatis;
+    int contInsatis;
+
+    do
+    {
+
+        menuCliente();
+
+        printf("\nDigite a opção desejada: ");
+        scanf("%d", &opcao);
+        fflush(stdin);
+
+        limpatela();
+
+        switch (opcao)
+        {
+        case 1:
+            menuEstoque();
+            printf("\n Você está vendo nosso estoque!\n");
+
+            break;
+        case 2:
+            menuEstoque();
+            printf("\nDigite o nome do produto desejado: \n");
+            gets(nomeProduto);
+
+            fflush(stdin);
+            printf("\nDigite o valor do produto comprado: R$ \n");
+            scanf("%f", &preco);
+            printf("\nQual a quantidade desse produto voce deseja levar: \n");
+            scanf("%d", &quantidade);
+
+            totalVendas += quantidade * preco;
+
+            printf("\nNome do produto comprado: %s \n", nomeProduto);
+            printf("\nQuantidade do produto comprado: %d \n", quantidade);
+            printf("\nO valor da compra é de R$ %.2f \n", totalVendas);
+
+            fflush(stdin);
+
+            break;
+        case 3:
+            printf("----Programa jovem aprendiz ------"); // satisfação do estagiário
+            printf("\nNome do Estagiário que te atendeu: \n");
+            gets(nomeFuncionario);
+            printf("Ele te atendeu bem?");
+            printf("\n1 - Sim\n2 - Não\n");
+            scanf("%d", &satisfacao);
+            if (satisfacao == 1)
+            {
+
+                printf("\nobrigado pela avaliação!\n");
+            }
+            else
+            {
+                printf("\nDesculpe, mas podemos melhorar! Por favor, forneça feedback para nós.\n");
+            }
+            system("pause");
+            system("cls");
+            break;
+
+            fflush(stdin);
+
+            break;
+        case 4:
+            printf("\nResponda as perguntas abaixo, sendo 1 para totalmente insatisfeito e 10 para totalmente satisfeito: \n"); // satisfação da loja
+            printf("\nGostou do atendimento da Loja Juventude? \n");
+            printf("\nGostou dos produtos da Loja Juventude? \n");
+            printf("\nGostou do site da Loja Juventude? \n");
+            scanf("%d", &satisfacao);
+
+            break;
+        case 5:
+            printf("\nObrigada por sua presença e pelas compras, tenha um feliz ano novo!\n");
+
+            break;
+        default:
+            printf("opção inválida!");
+            break;
+        }
+
+    } while (opcao != 5);
+
+    return 0;
+}
